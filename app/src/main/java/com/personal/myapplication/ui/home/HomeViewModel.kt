@@ -14,13 +14,14 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(private val catsPhotosUseCase: CatsPhotosUseCase) :
     ViewModel() {
 
+    private val photosLimit = 10
     private val _state = MutableStateFlow(HomeState())
     val state: StateFlow<HomeState> = _state
 
     fun getPhotos() {
         viewModelScope.launch {
             _state.update { it.copy(loading = true) }
-            val result = catsPhotosUseCase.getPhotos()
+            val result = catsPhotosUseCase.getPhotos(photosLimit)
             result.onSuccess {
                 _state.update { currentState ->
                     currentState.copy(

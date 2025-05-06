@@ -4,5 +4,5 @@ import com.personal.myapplication.data.CatsPhotosResponse
 
 interface CatsPhotosUseCase{
 
-    suspend fun getPhotos() : Result<List<CatsPhotosResponse>>
+    suspend fun getPhotos(limit : Int) : Result<List<CatsPhotosResponse>>
 }

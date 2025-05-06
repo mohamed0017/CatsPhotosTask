@@ -1,6 +1,7 @@
 package com.personal.myapplication.ui.home
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -29,15 +30,6 @@ fun HomeScreen(modifier: Modifier = Modifier) {
     }
 
     Column(modifier.fillMaxSize()) {
-        LazyColumn {
-            items(state.photos){
-                AsyncImage(
-                    modifier = Modifier.fillMaxWidth().height(200.dp),
-                    model = it,
-                    contentDescription = ""
-                )
-            }
-        }
 
         if (state.errorMessage.isNotEmpty())
             Text(state.errorMessage)
@@ -49,5 +41,17 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 
             Text("Refresh")
         }
+
+        LazyColumn {
+            items(state.photos, key = { it }){
+                AsyncImage(
+                    modifier = Modifier.fillMaxWidth().height(200.dp),
+                    model = it,
+                    contentDescription = ""
+                )
+                Spacer(Modifier.height(20.dp))
+            }
+        }
+
     }
 }

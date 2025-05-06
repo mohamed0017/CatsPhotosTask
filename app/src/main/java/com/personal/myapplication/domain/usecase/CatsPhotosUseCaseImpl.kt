@@ -6,8 +6,8 @@ import javax.inject.Inject
 
 class CatsPhotosUseCaseImpl @Inject constructor(private val catsPhotosRepo: CatsPhotosRepo) : CatsPhotosUseCase{
 
-    override suspend fun getPhotos(): Result<List<CatsPhotosResponse>> {
-       return catsPhotosRepo.getPhotos()
+    override suspend fun getPhotos(limit:Int): Result<List<CatsPhotosResponse>> {
+       return catsPhotosRepo.getPhotos(limit)
     }
 
 

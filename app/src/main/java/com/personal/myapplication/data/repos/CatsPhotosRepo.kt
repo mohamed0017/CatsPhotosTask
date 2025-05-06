@@ -7,10 +7,10 @@ import javax.inject.Inject
 
 class CatsPhotosRepoImpl @Inject constructor(private val catsPhotosApi: CatsPhotosApi) :
     CatsPhotosRepo {
-    override suspend fun getPhotos(): Result<List<CatsPhotosResponse>> {
+    override suspend fun getPhotos(limit: Int): Result<List<CatsPhotosResponse>> {
 
         try {
-            val response = catsPhotosApi.getCatsPhotos()
+            val response = catsPhotosApi.getCatsPhotos(limit)
 
             return if (response.isSuccessful) {
                 Result.success(response.body() ?: emptyList())
